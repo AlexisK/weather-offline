@@ -1,0 +1,1 @@
+export {route as dashboard} from './dashboard/dashboard.component';

@@ -1,0 +1,14 @@
+<html>
+<head>
+  <title>Client</title>
+</head>
+<body>
+  <div class="main_container app">
+    <navbar></navbar>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="main-loader" *ngIf="!state.isLoaded">Loading...</div>
+  </div>
+</body>
+</html>
