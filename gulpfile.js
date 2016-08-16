@@ -52,7 +52,8 @@ gulp.task('serve', function () {
         server : {
             baseDir : "./build/",
             routes: {
-                "/node_modules":"./node_modules/"
+                "/node_modules":"./node_modules/",
+                "/static":"./static/"
             }
         }
     });

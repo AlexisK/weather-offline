@@ -1,5 +1,14 @@
+// Base
 import {Component, ViewEncapsulation} from '@angular/core';
-import {StateService} from './general/state.service';
+
+// Services
+import {StateService} from './services/state.service';
+
+// Components
+import {loaderScreenComponent} from './layout/loader/loader-screen.component';
+import {navbarComponent} from './layout/navbar/navbar.component';
+import {icoPrefetchComponent} from './components/ico-prefetch/ico-prefetch.component';
+import {IcoComponent} from './components/ico/ico.component';
 
 /*
  APP
@@ -8,7 +17,12 @@ import {StateService} from './general/state.service';
 @Component({
     selector      : 'my-app',
     templateUrl   : 'app/app.component.html',
-    directives    : [],
+    directives    : [
+        loaderScreenComponent,
+        navbarComponent,
+        icoPrefetchComponent,
+        IcoComponent
+    ],
     providers     : [StateService],
     styleUrls     : ['app/general/general.css', 'app/app.component.css'],
     encapsulation : ViewEncapsulation.None
@@ -16,12 +30,12 @@ import {StateService} from './general/state.service';
 
 export class AppComponent {
 
-    constructor(private state: StateService) {
+    constructor(private state : StateService) {
         if ('serviceWorker' in navigator) {
 
             navigator['serviceWorker'].register('./service-worker.js').then(() => {
                 console.log('Service Worker Registered');
-                state.isLoaded = true;
+                setTimeout(() => state.isLoaded = true, 200);
             });
 
         }

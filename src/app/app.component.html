@@ -3,12 +3,13 @@
   <title>Client</title>
 </head>
 <body>
+  <ico-prefetch></ico-prefetch>
   <div class="main_container app">
-    <navbar></navbar>
+    <navbar *ngIf="state.isLoaded"></navbar>
     <div class="main-content">
       <router-outlet></router-outlet>
     </div>
-    <div class="main-loader" *ngIf="!state.isLoaded">Loading...</div>
+    <loader-screen *ngIf="!state.isLoaded"></loader-screen>
   </div>
 </body>
 </html>
