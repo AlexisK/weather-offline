@@ -25,6 +25,9 @@ gulp.task('build-cli-js', () => {
     gulp.src(`${CONST.source}/**/*.js`)
         .pipe(gulp.dest(CONST.target))
         .pipe(browserSync.stream());
+    gulp.src(`${CONST.source}/**/*.json`)
+        .pipe(gulp.dest(CONST.target))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('build-cli-ts', () => {

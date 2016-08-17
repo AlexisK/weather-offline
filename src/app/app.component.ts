@@ -23,7 +23,7 @@ import {IcoComponent} from './components/ico/ico.component';
         icoPrefetchComponent,
         IcoComponent
     ],
-    providers     : [StateService],
+    providers     : [],
     styleUrls     : ['app/general/general.css', 'app/app.component.css'],
     encapsulation : ViewEncapsulation.None
 })

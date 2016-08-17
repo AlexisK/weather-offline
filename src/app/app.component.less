@@ -1,7 +1,22 @@
 @import "./general/sizes";
+@import "./general/colors";
 
 .main-content {
+
   h1, h2, h3, p {
-    margin: 1em @space-2;
+    margin: 1em 0;
+  }
+
+  .widget {
+    margin: @space-1;
+    padding: @space-2;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 8px @grey-6;
+
+    & > *:first-child {
+      margin-top: 0;
+    }
   }
 }
+
