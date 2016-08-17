@@ -8,12 +8,12 @@ import {StateService} from "../../services/state.service";
     styleUrls   : ['app/pages/weather/weather.component.css']
 })
 
-export class weatherComponent {
-    constructor(public state: StateService) {
+export class WeatherComponent {
+    constructor(public state : StateService) {
     }
 }
 
-export const route = {path : 'weather', component : weatherComponent};
+export const route = {path : 'weather', component : WeatherComponent};
 
 
 

@@ -9,6 +9,7 @@ import {loaderScreenComponent} from './layout/loader/loader-screen.component';
 import {navbarComponent} from './layout/navbar/navbar.component';
 import {icoPrefetchComponent} from './components/ico-prefetch/ico-prefetch.component';
 import {IcoComponent} from './components/ico/ico.component';
+import {WeatherWidgetComponent} from './components/weather-widget/weather-widget.component';
 
 /*
  APP
@@ -21,7 +22,8 @@ import {IcoComponent} from './components/ico/ico.component';
         loaderScreenComponent,
         navbarComponent,
         icoPrefetchComponent,
-        IcoComponent
+        IcoComponent,
+        WeatherWidgetComponent
     ],
     providers     : [],
     styleUrls     : ['app/general/general.css', 'app/app.component.css'],

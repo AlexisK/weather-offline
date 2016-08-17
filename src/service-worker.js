@@ -1,6 +1,6 @@
 importScripts('/static/polyfills/cache.js');
 
-var cacheName = 'weather-offline-cache-v1-1';
+var cacheName    = 'weather-offline-cache-v1-7';
 var filesToCache = [
     '/',
     '/node_modules/core-js/client/shim.min.js',
@@ -101,30 +101,37 @@ var filesToCache = [
     '/app/layout/loader/loader-screen.component.css',
     '/app/layout/navbar/navbar.component.css',
     '/app/components/ico/ico.component.css ',
+    '/app/services/weather.service.js ',
+    '/app/components/weather-widget/weather-widget.component.js',
+    '/app/components/weather-widget/weather-widget.component.html',
+    '/app/components/weather-widget/weather-widget.component.css',
     '/static/icons.html'
-
 ];
 
-var fetched = [];
+var pathToCache = [
+    'https://query.yahooapis.com'
+];
+
+var fetched        = [];
 var _fetchInterval = null;
 
-self.addEventListener('install', function(ev) {
+self.addEventListener('install', function (ev) {
     console.log('[ServiceWorker] Install');
     ev.waitUntil(
-        caches.open(cacheName).then(function(cache) {
+        caches.open(cacheName).then(function (cache) {
             console.log('[ServiceWorker] Caching app shell');
             return cache.addAll(filesToCache);
         })
     );
 });
 
-self.addEventListener('activate', function(ev) {
+self.addEventListener('activate', function (ev) {
     console.log('[ServiceWorker] Activate');
     ev.waitUntil(
-        caches.keys().then(function(keyList) {
-            return Promise.all(keyList.map(function(key) {
-                console.log('[ServiceWorker] Removing old cache', key);
-                if (key !== cacheName) {
+        caches.keys().then(function (keyList) {
+            return Promise.all(keyList.map(function (key) {
+                if ( key !== cacheName ) {
+                    console.log('[ServiceWorker] Removing old cache', key);
                     return caches.delete(key);
                 }
             }));
@@ -132,13 +139,23 @@ self.addEventListener('activate', function(ev) {
     );
 });
 
-self.addEventListener('fetch', function(ev) {
+self.addEventListener('fetch', function (ev) {
 
     ev.respondWith(
-        caches.match(ev.request).then(function(response) {
+        caches.match(ev.request).then(function (response) {
             if ( response ) {
                 return response;
             }
+
+            pathToCache.forEach(path => {
+                if ( ev.request.url.indexOf(path) == 0 ) {
+                    caches.open(cacheName).then(function (cache) {
+                        console.log(`Caching ${ev.request.url}`);
+                        cache.add(ev.request.url);
+                    });
+                }
+            });
+
             logFetched(ev.request.url);
             return fetch(ev.request);
         })
@@ -152,6 +169,6 @@ function logFetched(url) {
 }
 
 function _logFetched() {
-    console.log('[ServiceWorker] Need to fetch:\n',fetched.join('\n'),'\n');
+    console.log('[ServiceWorker] Need to fetch:\n', fetched.join('\n'), '\n');
     fetched = [];
 }

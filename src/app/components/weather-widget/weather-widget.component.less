@@ -1,0 +1,17 @@
+@import "../../general/sizes";
+
+.weather-widget {
+  .line {
+    min-height: @space-4;
+    margin-bottom: @space-2;
+    & > div:first-child {
+      float: left;
+      width: @space-4; height: @space-4;
+      margin-right: @space-1;
+    }
+    & > div:last-child {
+      padding: @space-1 0;
+      line-height: @space-2;
+    }
+  }
+}

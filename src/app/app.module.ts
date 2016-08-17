@@ -8,6 +8,7 @@ import {AppComponent}  from './app.component';
 import {routing, appRoutingProviders} from './app.routing';
 
 import {StateService} from './services/state.service';
+import {WeatherService} from './services/weather.service';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {StateService} from './services/state.service';
         HTTP_PROVIDERS,
         appRoutingProviders,
         StateService,
+        WeatherService,
         {provide : LocationStrategy, useClass : HashLocationStrategy}
     ],
     bootstrap    : [AppComponent]
